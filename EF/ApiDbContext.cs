@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using AspNetAPI.Entites;
 
 namespace AspNetAPI.EF
 {
@@ -9,6 +10,9 @@ namespace AspNetAPI.EF
             optionsBuilder.UseSqlite("Filename=./ApiDb.db");
         }
 
-        public DbSet<Entites.Product> Products { get; set; }
+        public  DbSet<Product>? Products { get; set; }
+        public  DbSet<Category>? Categories { get; set; }
     }
+
+    // 
 }

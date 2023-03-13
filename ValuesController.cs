@@ -17,6 +17,9 @@ namespace AspNetAPI
         public string Name { get; set; }
         // public int Id { get; set; }
 
+        [Required]
+        public int CategoryId { get; set; }
+
         public ProductModelView(string name) {
             Name = name;
             // Id = 1;
@@ -93,6 +96,29 @@ namespace AspNetAPI
             }
 
             // 201 Created
+            Console.WriteLine(value);
+            
+            return Ok(value);
+        }
+
+        // add a new category and return the category
+        [HttpPost("category")]
+        public IActionResult PostCategory([FromBody] Category value)
+        {
+            Console.WriteLine(" --- value --- ");
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState);
+            }
+            ApiDbContext db = new ApiDbContext();
+            db.Categories.Add(value);
+            var isSaved = db.SaveChanges();
+            if(isSaved == 0) {
+                return BadRequest("Cannot create new category");
+            }
+
+            // 201 Created
+            Console.WriteLine(value);
+            
             return Ok(value);
         }
     }
