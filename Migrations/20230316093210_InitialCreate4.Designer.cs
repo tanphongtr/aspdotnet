@@ -2,6 +2,7 @@
 using AspNetAPI.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspNetAPI.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230316093210_InitialCreate4")]
+    partial class InitialCreate4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +39,6 @@ namespace AspNetAPI.Migrations
             modelBuilder.Entity("AspNetAPI.Entites.Product", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
@@ -53,9 +55,6 @@ namespace AspNetAPI.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Products");
                 });
@@ -86,7 +85,7 @@ namespace AspNetAPI.Migrations
 
                     b.HasOne("AspNetAPI.Entites.User", "User")
                         .WithOne("Product")
-                        .HasForeignKey("AspNetAPI.Entites.Product", "UserId")
+                        .HasForeignKey("AspNetAPI.Entites.Product", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

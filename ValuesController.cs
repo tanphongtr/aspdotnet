@@ -17,14 +17,27 @@ namespace AspNetAPI
         public string Name { get; set; }
         // public int Id { get; set; }
 
-        [Required]
         public int CategoryId { get; set; }
 
-        public ProductModelView(string name) {
+        public ProductModelView(string name, int categoryId) {
+            Name = name;
+            // Id = 1;
+            CategoryId = categoryId;
+        }
+    }
+
+    public class CategoryModelView {
+
+        [Required]
+        public string Name { get; set; }
+        public int Id { get; set; }
+
+        public CategoryModelView(string name) {
             Name = name;
             // Id = 1;
         }
     }
+    
 
     [Route("api/[controller]")]
     public class ValuesController : Controller
@@ -68,7 +81,8 @@ namespace AspNetAPI
         {
             Product product = new Product(
                 // value.Id,
-                value.Name
+                value.Name,
+                value.CategoryId
             );
             ApiDbContext db = new ApiDbContext();
             db.Products.Add(product);
@@ -82,14 +96,19 @@ namespace AspNetAPI
 
         // add a new product and return the product
         [HttpPost("product")]
-        public IActionResult PostProduct([FromBody] Product value)
+        public IActionResult PostProduct([FromBody] ProductModelView value)
         {
             Console.WriteLine(" --- value --- ");
             if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
             ApiDbContext db = new ApiDbContext();
-            db.Products.Add(value);
+            Product product = new Product(
+                // value.Id,
+                name: value.Name,
+                categoryId: value.CategoryId
+            );
+            db.Products.Add(product);
             var isSaved = db.SaveChanges();
             if(isSaved == 0) {
                 return BadRequest("Cannot create new product");
@@ -103,23 +122,31 @@ namespace AspNetAPI
 
         // add a new category and return the category
         [HttpPost("category")]
-        public IActionResult PostCategory([FromBody] Category value)
+        public IActionResult PostCategory([FromBody] CategoryModelView value)
         {
             Console.WriteLine(" --- value --- ");
             if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
             ApiDbContext db = new ApiDbContext();
-            db.Categories.Add(value);
+            Category category = new Category(
+                // value.Id,
+                value.Name
+            );
+            // create a new category and return the category
+            db.Categories.Add(category);
             var isSaved = db.SaveChanges();
             if(isSaved == 0) {
                 return BadRequest("Cannot create new category");
             }
 
+            var savedEntity = db.Categories.FirstOrDefault(e => e.Id == category.Id);
+
+
             // 201 Created
             Console.WriteLine(value);
             
-            return Ok(value);
+            return Ok(savedEntity);
         }
     }
 }

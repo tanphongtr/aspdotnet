@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "LHYEdCVRoJ7iEnOpWDHPeo6ujvh3RvkMyXLkFAWzNoO0zPUA761sZqcRPC2r3TJdIIl0J1OlFURBl6yToud+CA==",
+  "dgSpecHash": "BLqpc9U8pTUmwB0EpRz0XrZ5HsHNboL+sUO3FrqAo7WKT5OGkEn8fTMntn4M2KXEMKuTA1lvQlMP0kyQuDOU4A==",
   "success": true,
   "projectFilePath": "/Users/phongtran/Repositories/DotNet/AspNetAPI/AspNetAPI.csproj",
   "expectedPackageFiles": [
@@ -27,6 +27,8 @@
     "/Users/phongtran/.nuget/packages/microsoft.extensions.primitives/7.0.0/microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "/Users/phongtran/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
     "/Users/phongtran/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
+    "/Users/phongtran/.nuget/packages/mysqlconnector/2.2.5/mysqlconnector.2.2.5.nupkg.sha512",
+    "/Users/phongtran/.nuget/packages/pomelo.entityframeworkcore.mysql/7.0.0/pomelo.entityframeworkcore.mysql.7.0.0.nupkg.sha512",
     "/Users/phongtran/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.1.4/sqlitepclraw.bundle_e_sqlite3.2.1.4.nupkg.sha512",
     "/Users/phongtran/.nuget/packages/sqlitepclraw.core/2.1.4/sqlitepclraw.core.2.1.4.nupkg.sha512",
     "/Users/phongtran/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.4/sqlitepclraw.lib.e_sqlite3.2.1.4.nupkg.sha512",

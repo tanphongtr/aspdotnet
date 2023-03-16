@@ -1,4 +1,6 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace AspNetAPI.Entites
 {
     public class Category
@@ -10,7 +12,8 @@ namespace AspNetAPI.Entites
         {
             Name = name;
         }
-        public ICollection<Product>? Products { get; set; }
+
+        public ICollection<Product> Products { get; set; }
     }
 
 }
